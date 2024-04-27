@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: audition-api
+  config:
+    import: "optional:configserver:"
+  main:
+    allow-bean-definition-overriding: true
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  mvc:
+    throw-exception-if-no-handler-found: true
+  sleuth:
+    sampler:
+      probability: 1.0
+  server:
+    max-http-request-header-size: 16KB
+  logging:
+    pattern:
+      level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+  resilience4j.retry.instances:
+    auditionClient:
+      maxRetryAttempts: 3
+      waitDuration: 1000
+  resilience4j.circuitbreaker.instances:
+    auditionClient:
+      slidingWindowSize: 100
+      minimumNumberOfCalls: 10
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 10000
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    artifact: "Audition API"
+    name: "Audition API"
+    version: "1.0.0"
+    description: "This is a demo Spring Boot application for Audition"
+    author: "Audition"
+
+
