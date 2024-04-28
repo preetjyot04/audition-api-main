@@ -61,7 +61,12 @@ dependencies {
     implementation 'io.opentelemetry:opentelemetry-api:1.22.0'
 
     implementation "org.springframework.boot:spring-boot-starter-actuator"
+    runtimeOnly "io.micrometer:micrometer-registry-prometheus"
+    implementation "io.micrometer:micrometer-tracing-bridge-brave"
     implementation "io.micrometer:micrometer-tracing"
+    implementation "io.micrometer:context-propagation"
+
+
 
 
     //to implement fallback methods in Service class

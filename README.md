@@ -74,6 +74,6 @@ __Optional__
 - Related to obserability
     - Logging is done with slf4j and logback and current level of logs is set to WARN and same can be updated in
       logback-spring.xml under the console appender.
-    - Metrics instrumentation is done with Actuators, Currently /health and /info endpoints are enabled as mentioned in
-      the TODO and other endpoints can be enabled by adding in application.yml file along with info.
+    - Metrics instrumentation is done with Actuators with Prometheus, Currently /health and /info endpoints are enabled as mentioned in
+      the TODO and other endpoints can be enabled by adding in application.yml file along with info.(we can add prometheus and run docker image of Prometheus and grafana to see the metrics UI dashboards, I have added the configs file under Monitoring folder)
     - For tracing, spanId and traceId is added to header as directed in TODO item.
